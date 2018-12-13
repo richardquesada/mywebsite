@@ -1,10 +1,15 @@
 @import "config";
-
+@import "menu";
 * {
   box-sizing: border-box;
 }
 
+.text-secondary {
+  color: $secondary-color;
+}
+
 body {
+  text-align: center;
   @include background;
   background: $primary-color;
   color: #fff;
@@ -22,12 +27,39 @@ h3 {
   font-weight: 400;
   &.lg-heading {
     font-size: 6rem;
+    animation: fadeIn 1s;
   }
   &.sm-heading {
+    opacity: 0;
+    animation: fadeIn 1s, slide 1s;
+    //animation-delay: 0.25s;
+    animation-fill-mode: forwards;
+    position: relative;
+    left: -1000px;
+
+    @keyframes slide {
+      0% {
+        left: -1000px;
+      }
+      100% {
+        left: 0px;
+      }
+    }
     margin-bottom: 2rem;
     padding: 0.2rem 1rem;
     background: rgba(lighten($primary-color, 2), 0.5);
   }
+}
+
+.first-word {
+  @include fadeIn(0.5s);
+}
+.second-word {
+  @include fadeIn(1.25s);
+  color: $secondary-color;
+}
+.third-word {
+  @include fadeIn(2s);
 }
 
 a {
@@ -41,8 +73,9 @@ header {
   width: 100%;
 }
 
-.text-secondary {
-  color: $secondary-color;
+.blur {
+  filter: blur(7px);
+  @include easeOut();
 }
 
 main {
@@ -50,7 +83,10 @@ main {
   height: 100%;
 
   .icons {
+    @include fadeIn(2.5s);
     margin-top: 1rem;
+    animation-fill-mode: forwards;
+    padding-bottom: 20px;
 
     a {
       padding: 0.4rem;
@@ -69,4 +105,48 @@ main {
       margin-top: 20vh;
     }
   }
+}
+
+.container {
+  @include fadeIn(3s);
+  height: 400px;
+  display: flex;
+  position: relative;
+  //align-items: left;
+  //justify-content: left;
+  flex-shrink: 3;
+  margin-bottom: 2rem;
+  padding: 0.2rem 1rem;
+  background: rgba(lighten($primary-color, 2), 0.5);
+}
+
+.about-me {
+  padding-right: 20px;
+  width: 33%;
+  text-align: left;
+  justify-content: left;
+
+  //padding: 0.2rem 1rem;
+  //background: rgba(lighten($primary-color, 2), 0.5);
+  &-header {
+    font-size: 40px;
+    background: rgba(lighten($primary-color, 2), 0.5);
+    padding-right: 15px;
+    padding-left: 15px;
+    //padding: 0.2rem 1rem;
+  }
+
+  &-text {
+    background: rgba(lighten($primary-color, 2), 0.5);
+    padding-right: 15px;
+    padding-left: 15px;
+    padding: 15px;
+  }
+}
+
+.my-websites {
+  padding-right: 20px;
+  width: 66%;
+  text-align: left;
+  justify-content: left;
 }

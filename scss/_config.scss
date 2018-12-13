@@ -2,7 +2,22 @@ $primary-color: #105b63;
 $secondary-color: #ffad55;
 $show-home-image: true;
 $home-image: url(../img/background.png);
-$background-opacity: 0.8;
+$background-opacity: 0.4;
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@mixin fadeIn($animation-delay) {
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  animation-delay: $animation-delay;
+}
 
 @mixin easeOut {
   transition: all 0.5s ease-out;
@@ -14,6 +29,7 @@ $background-opacity: 0.8;
       background: $home-image;
       background-attachment: fixed;
       background-size: cover;
+      animation: fadeIn 2s;
 
       &:after {
         content: "";
